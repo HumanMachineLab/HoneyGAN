@@ -8,14 +8,9 @@ import random
 from word2vec import word2vec, cosdis
 
 
-'''
-python3 hgt.py --generated GNpassGAN_generated.txt --path-target real_passwords/rockyou_sorted_preprocessed.txt --path-attack real_passwords/dubsmash-com_sorted_preprocessed.txt  --hgt 0
-'''
-
-
-NUM_SWEETWORDS = 20 # change to 20 
-NUM_USER = 10000 # change to 50000 
-NUM_ATTEMPT = 20 # change to 20
+NUM_SWEETWORDS = 20 
+NUM_USER = 10000 
+NUM_ATTEMPT = 20 
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -123,32 +118,24 @@ def chafffing_by_tweak(path_target):
     print("honeywords_tweak generated.")
     return combined_matrix 
 
-
-# need to run model_only and tweak_only first
 # change path 
-def chaffing_by_hybrid():
-    print("start to generate honeywords_hybrid.")
-    honeywords_model = open("honeywords_model.txt", "r").readlines()
-    honeywords_tweak = open("honeywords_fasttext.txt", "r").readlines()
-    output = []
-    for i in range(NUM_USER):
-        result = [None] * NUM_SWEETWORDS
-        result = honeywords_tweak[i].split()[:int(NUM_SWEETWORDS/2)] + honeywords_model[i].split()[NUM_SWEETWORDS - int(NUM_SWEETWORDS/2):]
-        # avoid dupliates
-        result = list(dict.fromkeys(result))
-        while len(result) < NUM_SWEETWORDS:
-            temp = honeywords_model[i].split()[int(random.randint(1, NUM_SWEETWORDS-1))]
-            if temp not in result:
-                result.append(temp)
+def chaffing_by_fasttext():
+    print("start to generate honeywords_fasttext.")
+    model = fasttext.load_model("model_trained_on_rockyou_500_epochs.bin")
+    real_passwords= open('rockyou_sorted_preprocessed.txt', "r").readlines()
+    real_passwords = [l.strip() for l in real_passwords]
+    honeywords=[]
+    for real_password in real_passwords:
+        honeywords.append(real_password)
+        temp = model.get_nearest_neighbors(real_password,k=NUM_SWEETWORDS-1)
+        for element in temp:
+            honeywords.append(element[1])
 
-        output += result
-    matrix = np.array(output).reshape(-1, NUM_SWEETWORDS)
-    matrix = [[l[i].strip() for i in range(len(l))] for l in matrix]
-
-    with open('honeywords_hybrid.txt', 'w') as f:
+    matrix = np.array(honeywords).reshape(-1, NUM_SWEETWORDS)
+    with open('honeywords_fasttext.txt', 'w') as f:
         for row in matrix:
             f.write(" ".join([str(a) for a in row] + list("\n")))
-    print("honeywords_hybrid generated.")
+    print("honeywords_fasttext generated.")
     return matrix
 
 # calculate the probability matrix
@@ -159,7 +146,7 @@ def cal_probs(path_attack, hgt):
     elif hgt == 1:
         matrix = chafffing_by_tweak(args.path_target)
     else:
-        matrix = chaffing_by_hybrid()
+        matrix = chaffing_by_fasttext()
 
     attack= open(path_attack, "r").readlines()
     print("start to calculate probability matrix")
@@ -178,7 +165,7 @@ def cal_probs(path_attack, hgt):
     elif hgt == 1:
         name = 'tweak'
     else:
-        name = 'hybrid'
+        name = 'fasttext'
     with open('probs_{}.txt'.format(name), 'w') as f:
         for row in probs:
             f.write(" ".join([str(a) for a in row] + list("\n")))
