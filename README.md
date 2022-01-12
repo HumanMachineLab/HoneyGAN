@@ -17,7 +17,6 @@ pip3 install -r requirements.txt
 ### Generate honeywords using either HGTs in the paper (0 is GNPassGAN, 1 is tweaking, 2 is fasttext) and get attack success rate.
 ```bash
 # change target and attack file path
-# An example:
 python3 hgt.py --generated GNpassGAN_generated.txt \
                --path-target real_passwords/rockyou_sorted_preprocessed.txt \
                --path-attack real_passwords/dubsmash-com_sorted_preprocessed.txt  \
@@ -27,6 +26,5 @@ python3 hgt.py --generated GNpassGAN_generated.txt \
 ### Calculate inner text similarity
 ```bash
 # change the path of the tested file
-# An example:
 python3 inner_similarity.py --path-sweetwords sweetwords/chaffing_by_tweak/rockyou_10000_20.txt
 ```
