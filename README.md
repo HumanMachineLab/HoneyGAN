@@ -1,5 +1,5 @@
 # HoneyGAN
-This repository is created for the review process of paper "Honey, I Shrunk the Passwords: Creating Indistinguishable Honeywords with Improved Generative Adversarial Networks."  
+This repository is created for the review process of paper "HoneyGAN: Creating Indistinguishable Honeywords with Improved Generative Adversarial Networks."  
 
 HoneyGAN is a honeyword generation technique (HGT) based on GNPassGAN. 
 
