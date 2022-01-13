@@ -1,6 +1,8 @@
 # HoneyGAN
-This repository is created for the review process of paper "Creating Indistinguishable Honeywords With Improved Generative Adversarial Networks."  
+This repository is created for the review process of paper "Honey, I Shrunk the Passwords: Creating Indistinguishable Honeywords with Improved Generative Adversarial Networks."  
+
 HoneyGAN is a honeyword generation technique (HGT) based on GNPassGAN. 
+
 The datasets in the real passwords folder are taken from [BitBucket](https://bitbucket.org/srecgrp/honeygen-generating-honeywords-using-representation-learning/src/master/password_lists_processed_50000_records/).
 
 ### Install dependencies
@@ -12,7 +14,9 @@ pip3 install -r requirements.txt
 ```
 
 ### Train the fasttext model
-```python3 fasttext.py```
+```bash
+python3 fasttext.py
+```
 
 ### Generate honeywords using either HGTs in the paper (0 is GNPassGAN, 1 is tweaking, 2 is fasttext) and get attack success rate.
 ```bash
