@@ -25,7 +25,7 @@ real_passwords = [l.strip() for l in real_passwords]
 honeywords=[]
 for real_password in real_passwords:
   honeywords.append(real_password)
-  temp = model.get_nearest_neighbors(real_password,k=9)
+  temp = model.get_nearest_neighbors(real_password,k=NUM_SWEETWORDS-1)
   for element in temp:
     honeywords.append(element[1])
 
