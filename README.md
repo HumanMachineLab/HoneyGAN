@@ -1,7 +1,7 @@
 # HoneyGAN
 This repository is created for the review process of paper "HoneyGAN: Creating Indistinguishable Honeywords with Improved Generative Adversarial Networks."  
 
-HoneyGAN is a honeyword generation technique (HGT) based on GNPassGAN. 
+HoneyGAN is a honeyword generation technique (HGT) based on [GNPassGAN](https://github.com/fangyiyu/GNPassGAN). 
 
 The datasets in the real passwords folder are taken from [BitBucket](https://bitbucket.org/srecgrp/honeygen-generating-honeywords-using-representation-learning/src/master/password_lists_processed_50000_records/).
 
