@@ -33,6 +33,7 @@ python3 hgt.py --generated GNpassGAN_generated.txt \
 python3 inner_similarity.py --path-sweetwords sweetwords/chaffing_by_tweak/rockyou_10000_20.txt
 ```
 ## Citation
+If you find our work is relevant to your research, please cite:
 ```
 @InProceedings{10.1007/978-3-031-29504-1_11,
 author="Yu, Fangyi and Vargas Martin, Miguel",
