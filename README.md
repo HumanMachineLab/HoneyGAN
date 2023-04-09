@@ -36,7 +36,7 @@ python3 inner_similarity.py --path-sweetwords sweetwords/chaffing_by_tweak/rocky
 If you find our work is relevant to your research, please cite:
 ```
 @InProceedings{10.1007/978-3-031-29504-1_11,
-author="Yu, Fangyi and Vargas Martin, Miguel",
+author="Yu, Fangyi and Martin, Miguel Vargas",
 title="HoneyGAN: Creating Indistinguishable Honeywords with Improved Generative Adversarial Networks",
 booktitle="Security and Trust Management",
 year="2023",
