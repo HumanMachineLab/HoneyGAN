@@ -1,5 +1,5 @@
 # HoneyGAN
-This repository is created for the review process of paper "HoneyGAN: Creating Indistinguishable Honeywords with Improved Generative Adversarial Networks."  
+This repository is created for the review process of paper ["HoneyGAN: Creating Indistinguishable Honeywords with Improved Generative Adversarial Networks." ](https://link.springer.com/chapter/10.1007/978-3-031-29504-1_11#citeas) 
 
 HoneyGAN is a honeyword generation technique (HGT) based on [GNPassGAN](https://github.com/fangyiyu/GNPassGAN). 
 
